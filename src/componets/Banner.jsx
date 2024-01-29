@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../api/axios";
+import instance from "../api/axios";
 import "./Banner.css";
 import requests from "../api/requests";
 import styled from "styled-components";
@@ -12,7 +12,7 @@ const Banner = () => {
   }, []);
   const fetchData = async () => {
     // 현재 상영중인 영화 정보를 가져오기(여러영화)
-    const response = await axios.get(requests.fetchNowPlaying); //fetch와 같은 기능. ''주소 넣어주면 되는데 인스턴스 이미 만들었음
+    const response = await instance.get(requests.fetchNowPlaying); //fetch와 같은 기능. ''주소 넣어주면 되는데 인스턴스 이미 만들었음
 
     // 여러 영화 중 영화 하나의 id가져오기
     const movieId =
@@ -20,7 +20,7 @@ const Banner = () => {
         Math.floor(Math.random() * response.data.results.length)
       ].id;
     // 특정 영화의 더 상세한 정보를 가져오기(비디오 정보도 포함)
-    const { data: movieDetail } = await axios.get(`movie/${movieId}`, {
+    const { data: movieDetail } = await instance.get(`movie/${movieId}`, {
       params: { apppned_to_repoase: "videos" },
     });
     setMovie(movieDetail);
