@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage/index";
 import DetailPage from "./pages/DetailPage";
 import SearchPage from "./pages/SearchPage";
+import { useRef } from "react";
 
 const Layout = () => {
   return (
@@ -15,6 +16,8 @@ const Layout = () => {
   );
 };
 function App() {
+  const ref = useRef("안녕하세요");
+  console.log(ref);
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
