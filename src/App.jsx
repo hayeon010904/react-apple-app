@@ -6,6 +6,7 @@ import MainPage from "./pages/MainPage/index";
 import DetailPage from "./pages/DetailPage";
 import SearchPage from "./pages/SearchPage";
 import { useRef } from "react";
+import SignUpPage from "./pages/SignUpPage/index";
 
 const Layout = () => {
   return (
@@ -22,6 +23,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="main" element={<MainPage />} />
         <Route path="search" element={<SearchPage />} />
         <Route path="/:movieId" element={<DetailPage />} />

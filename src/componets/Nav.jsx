@@ -34,10 +34,10 @@ const Nav = () => {
     onAuthStateChanged(auth, (user) => {
       if (!user) {
         //로그인안됐을 때 -> 로그인 창으로이지에 가도 돌아옴
-        navigate("/");
+        // navigate("/");
       } else if (user && pathname === "/") {
         //로그인상태-> main으로 => 근데 search 페이지에서도니까 조건을
-        navigate("/main");
+        // navigate("/main");
       }
     });
   }, [auth, navigate, pathname]);

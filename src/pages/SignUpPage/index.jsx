@@ -1,25 +1,25 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-
-const LoginPage = () => {
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import app from "../../firebase";
+const SignUpPage = () => {
   const auth = getAuth();
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
-  const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password)
+
+  const handleSignUp = () => {
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+        console.log("회원가입 성공:", user);
 
         // ...
       })
@@ -27,6 +27,8 @@ const LoginPage = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         alert(error.message);
+        console.log(error);
+        // ..
       });
   };
 
@@ -36,7 +38,7 @@ const LoginPage = () => {
         <Logo />
         <HeadingText src="/public/images/apple-gray-logo.svg" alt="로고">
           {" "}
-          LOGIN
+          회원가입
         </HeadingText>
         <Description>Login and experience various contents</Description>
         <Input
@@ -51,10 +53,8 @@ const LoginPage = () => {
           // value={password}
           onChange={handlePassword}
         ></Input>
-        <Button onClick={handleLogin}>login</Button>
-        <LinkText onClick={() => navigate("/signup")}>
-          Create New Account
-        </LinkText>
+        <Button onClick={handleSignUp}>가입하기</Button>
+        <LinkText>Create New Account</LinkText>
         {/* <LinkText>Forgot Apple ID or Password?</LinkText> */}
       </Center>
     </Container>
@@ -134,4 +134,4 @@ const Button = styled.button`
     background-color: hsla(0, 0%, 100%, 0.04);
   }
 `;
-export default LoginPage;
+export default SignUpPage;
