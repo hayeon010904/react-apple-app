@@ -14,6 +14,7 @@ const SignUpPage = () => {
     setPassword(e.target.value);
   };
 
+  //Firebase: Error (auth/invalid-credential).
   const handleSignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
